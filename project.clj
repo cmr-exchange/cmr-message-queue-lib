@@ -1,4 +1,4 @@
-(defproject nasa-cmr/cmr-message-queue-lib "0.1.0-SNAPSHOT"
+(defproject gov.nasa.earthdata/cmr-message-queue-lib "0.1.0-SNAPSHOT"
   :description "Library containing code to handle message queue interactions within the CMR."
   :url "https://github.com/nasa/Common-Metadata-Repository/tree/master/message-queue-lib"
   :exclusions [
@@ -92,4 +92,10 @@
     "restart-sqs-sns"
       ["do"
         ["stop-sqs-sns"]
-        ["start-sqs-sns"]]})
+        ["start-sqs-sns"]]
+    "build-jar" ["with-profile" "+security" "jar"]
+    "build-uberjar" ["with-profile" "+security" "uberjar"]
+    "publish" ["with-profile" "+security" "do"
+      ["clean"]
+      ["build-jar"]
+      ["deploy" "clojars"]]})
